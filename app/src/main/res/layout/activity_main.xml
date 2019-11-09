@@ -4,23 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rupali.androdev.assignment3.MainActivity">
+    android:orientation="vertical"
+    tools:context="com.rupali.androdev.assignment3.MainActivity"
+    android:layout_marginTop="100dp"
+    >
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/accel"
-        android:text="Accelorometer"/>
+        android:text="Accelorometer"
+        android:layout_gravity="center"
+        />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/wifi"
-        android:text="WIFI"/>
+        android:text="WIFI"
+        android:layout_gravity="center"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="GPS"
-        android:id="@+id/gps"/>
-
+        android:layout_gravity="center"
+        android:id="@+id/gps"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="microphone"
+        android:id="@+id/micro"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

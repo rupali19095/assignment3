@@ -22,5 +22,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/zValue"
         android:layout_marginTop="30sp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show saved Data"
+        android:id="@+id/save_acc"
+        android:layout_gravity="center"
+        />
 
 </LinearLayout>

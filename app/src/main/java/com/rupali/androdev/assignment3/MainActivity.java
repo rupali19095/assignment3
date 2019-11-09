@@ -12,6 +12,8 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     Button b1;
     Button b2;
+    Button b3;
+    Button b4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,5 +37,22 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(intent);
             }
         });
+        b3=findViewById(R.id.gps);
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(getApplicationContext(),GPS_location.class);
+                MainActivity.this.startActivity(i);
+            }
+        });
+        b4=findViewById(R.id.micro);
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(getApplicationContext(),microphone.class);
+                MainActivity.this.startActivity(i);
+            }
+        });
+
     }
 }

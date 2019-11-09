@@ -21,7 +21,7 @@ public class WifiScannerActivity extends AppCompatActivity {
     private WifiManager wifiManager;
     private ListView listView;
     private Button buttonScan;
-    int size=0;
+    private int size=0;
     private List<ScanResult> results;
     private ArrayList<String> arrayList=new ArrayList<>();
     private ArrayAdapter adapter;
@@ -47,7 +47,7 @@ public class WifiScannerActivity extends AppCompatActivity {
             Toast.makeText(this,"Wifi is disabled", Toast.LENGTH_LONG).show();
             wifiManager.setWifiEnabled(true);
         }
-        adapter=new ArrayAdapter(this,R.layout.row,arrayList);
+        adapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
         listView.setAdapter(adapter);
         ScanWifi();
     }
