@@ -7,32 +7,25 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import org.w3c.dom.Text;
-
-import static android.os.Build.ID;
-
 /**
- * Created by dell on 11/6/2019.
+ * Created by dell on 11/10/2019.
  */
 
-public class DatabaseHelper1 extends SQLiteOpenHelper {
-    private static final String Table_Name="Accelerometer_data";
+public class DatabaseHelper_gps extends SQLiteOpenHelper {
+    private static final String Table_Name="gps_data";
     private static final String col1="ID";
-    private static  final String col2="x_cor";
-    private static  final String col3="y_cor";
-    private static  final String col4="z_cor";
+    private static  final String col2="lattitude_longitude";
 
-    public DatabaseHelper1(Context context) {
+    public DatabaseHelper_gps(Context context) {
         super(context,Table_Name,null,1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String create_Table="CREATE TABLE "+ Table_Name + "(" + col1 +" INTEGER PRIMARY KEY AUTOINCREMENT,"+
-                col2+" TEXT, "+
-                col3+" TEXT, "+
-                col4+" TEXT)";
-        Log.d("DATABASE ON CREATE","adding COLUMNS "+col2+""+col3+""+col4+"to "+Table_Name);
+                col2+" TEXT) ";//+
+                //col3+" TEXT) ";
+        Log.d("DATABASE ON CREATE","adding COLUMNS "+col2+""+"to "+Table_Name);
         sqLiteDatabase.execSQL(create_Table);
     }
 
@@ -41,14 +34,11 @@ public class DatabaseHelper1 extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Table_Name);
         onCreate(db);
     }
-    public boolean addData(String x,String y,String z){
+    public boolean addData(String x){
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues cv=new ContentValues();
-
         cv.put(col2, x);
-        cv.put(col3,y);
-        cv.put(col4, z);
-        Log.d("DATABASE","adding data "+x+""+y+""+z+"to "+Table_Name);
+        Log.d("DATABASE","adding data "+x+""+"to "+Table_Name);
         long result=db.insert(Table_Name,null,cv);
         if (result==-1){
             return false;

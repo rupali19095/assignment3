@@ -14,6 +14,7 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.widget.Toast;
 
 /**
  * Created by dell on 11/6/2019.
@@ -69,6 +70,8 @@ public class GPS_Service extends Service {
             locationManager.removeUpdates(listener);
         }
    }
+
+
 }
 
 //https://github.com/miskoajkula/GPS_service

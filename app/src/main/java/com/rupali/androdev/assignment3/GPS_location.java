@@ -14,11 +14,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GPS_location extends AppCompatActivity {
     private Button start,stop;
     private TextView txt;
     private BroadcastReceiver broadcastReceiver;
+    private DatabaseHelper_gps db1;
+    Button save_data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +29,20 @@ public class GPS_location extends AppCompatActivity {
         start=findViewById(R.id.button);
         stop=findViewById(R.id.btn);
         txt=findViewById(R.id.coordinates);
-        
+        db1=new DatabaseHelper_gps(this);
+        save_data=findViewById(R.id.save_data_gps);
+
         if(!runtime_permissions())
         {
             enable_buttons();
         }
+        save_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), ListSavedDataGPS.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void enable_buttons() {
@@ -48,6 +60,7 @@ public class GPS_location extends AppCompatActivity {
                 stopService(i);
             }
         });
+
     }
 
     private boolean runtime_permissions() {
@@ -79,6 +92,7 @@ public class GPS_location extends AppCompatActivity {
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     txt.append("\n"+ intent.getExtras().get("latitude_longitude"));
+                    AddData();
                 }
             };
         }
@@ -90,6 +104,17 @@ public class GPS_location extends AppCompatActivity {
             unregisterReceiver(broadcastReceiver);
         }
     }
+    public void AddData() {
+        String save_data = txt.getText().toString();
+        boolean  insertdata = db1.addData(save_data);
+        if (insertdata) {
+            Toast.makeText(this, "Data inserted", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Data Not inserted", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }
 
 
